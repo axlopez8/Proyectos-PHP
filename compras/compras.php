@@ -128,22 +128,19 @@
 							<option selected>---- Productos ----</option>
 
 							<?php
-
 							while ($columna3 = mysqli_fetch_array($resultado3)) {
 							?>
 								<option value="<?php echo $columna3[0] ?>"><?php echo $columna3[1] ?> -- <?php echo $columna3[2] ?></option>
 							<?php
-
 							}
 							?>
 						</select>
-						<?php
 
+						<?php
 						while ($columna3 = mysqli_fetch_array($resultado3)) {
 						?>
 							<input type="hidden" id="p<?php echo $columna2[0] ?>" value="<?php echo $columna2[2] ?>" />
 						<?php
-
 						}
 						?>
 
@@ -198,7 +195,7 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script>
-var monto=0 
+	var monto = 0
 	$(document).on("change", "#pago", function() {
 		if (document.getElementById("monto").value >= document.getElementById("pago").value) {
 			document.getElementById('estado').value = "Cancelado"
@@ -209,7 +206,7 @@ var monto=0
 
 	$(document).on("change", "#cantidad1", function() {
 		var d = document.getElementById("Producto1").value
-		
+
 		document.getElementById("monto").value = document.getElementById("p" + d).value * document.getElementById("cantidad1").value
 	});
 </script>
