@@ -111,6 +111,7 @@
 							$resultado2 = mysqli_query($conexion, $consulta2) or die("Si esta leyendo estoy significa que la consulta esta mal");
 							$consulta3 = "SELECT idProducto, Nombre, Precio_Compra FROM productos";
 							$resultado3 = mysqli_query($conexion, $consulta3) or die("Si esta leyendo estoy significa que la consulta esta mal");
+
 							while ($columna2 = mysqli_fetch_array($resultado2)) {
 							?>
 								<option value="<?php echo $columna2[0] ?>"><?php echo $columna2[1] ?></option>
@@ -120,6 +121,15 @@
 						</select>
 
 					</div>
+					<?php
+					$resultadop = mysqli_query($conexion, $consulta3) or die("Si esta leyendo estoy significa que la consulta esta mal");
+
+					while ($columna3 = mysqli_fetch_array($resultadop)) {
+					?>
+						<input type="hidden" id="p<?php echo $columna3[0] ?>" value="<?php echo $columna3[2] ?>" />
+					<?php
+					}
+					?>
 					<div id="Pro1" class="form-group">
 
 						<label>Producto</label>
@@ -131,20 +141,57 @@
 							while ($columna3 = mysqli_fetch_array($resultado3)) {
 							?>
 								<option value="<?php echo $columna3[0] ?>"><?php echo $columna3[1] ?> -- <?php echo $columna3[2] ?></option>
+
 							<?php
 							}
 							?>
 						</select>
 
-						<?php
-						while ($columna3 = mysqli_fetch_array($resultado3)) {
-						?>
-							<input type="hidden" id="p<?php echo $columna2[0] ?>" value="<?php echo $columna2[2] ?>" />
-						<?php
-						}
-						?>
-
 						<input type="number" id="cantidad1" class="form-control" required>
+
+					</div>
+					<div id="Pro2" class="form-group">
+
+						<label>Producto</label>
+
+						<select id="Producto2" class="form-control" required>
+							<option selected>---- Productos ----</option>
+
+							<?php
+							$resultadop = mysqli_query($conexion, $consulta3) or die("Si esta leyendo estoy significa que la consulta esta mal");
+
+							while ($columna3 = mysqli_fetch_array($resultadop)) {
+							?>
+								<option value="<?php echo $columna3[0] ?>"><?php echo $columna3[1] ?> -- <?php echo $columna3[2] ?></option>
+
+							<?php
+							}
+							?>
+						</select>
+
+						<input type="number" id="cantidad2" class="form-control" required>
+
+					</div>
+					<div id="Pro3" class="form-group">
+
+						<label>Producto</label>
+
+						<select id="Producto3" class="form-control" required>
+							<option selected>---- Productos ----</option>
+
+							<?php
+							$resultadop = mysqli_query($conexion, $consulta3) or die("Si esta leyendo estoy significa que la consulta esta mal");
+
+							while ($columna3 = mysqli_fetch_array($resultadop)) {
+							?>
+								<option value="<?php echo $columna3[0] ?>"><?php echo $columna3[1] ?> -- <?php echo $columna3[2] ?></option>
+
+							<?php
+							}
+							?>
+						</select>
+
+						<input type="number" id="cantidad3" class="form-control" required>
 
 					</div>
 					<div class="modal-body">
@@ -180,6 +227,9 @@
 		var Total_Pagado = $('#Total_Pagado').val();
 		var proveedor = $('#proveedor').val();
 		var estado = $('#estado').val();
+		if($('#cantidad1').val()> 0 && $('#Producto1').val()> 0){
+			
+		}
 		var parametros = 'Total_Monto=' + Total_Monto + '&Total_Pagado=' + Total_Pagado + '&proveedor=' + proveedor + '&estado=' + estado;
 
 		$.ajax({
@@ -195,7 +245,9 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script>
-	var monto = 0
+	var monto1 = 0
+	var monto2 = 0
+	var monto3 = 0
 	$(document).on("change", "#pago", function() {
 		if (document.getElementById("monto").value >= document.getElementById("pago").value) {
 			document.getElementById('estado').value = "Cancelado"
@@ -206,7 +258,17 @@
 
 	$(document).on("change", "#cantidad1", function() {
 		var d = document.getElementById("Producto1").value
-
-		document.getElementById("monto").value = document.getElementById("p" + d).value * document.getElementById("cantidad1").value
+		monto1 = document.getElementById("p" + d).value * document.getElementById("cantidad1").value
+		document.getElementById("monto").value = monto1 + monto2 + monto3
+	});
+	$(document).on("change", "#cantidad2", function() {
+		var d = document.getElementById("Producto2").value
+		monto2 = document.getElementById("p" + d).value * document.getElementById("cantidad2").value
+		document.getElementById("monto").value = monto1 + monto2 + monto3
+	});
+	$(document).on("change", "#cantidad3", function() {
+		var d = document.getElementById("Producto3").value
+		monto3 = document.getElementById("p" + d).value * document.getElementById("cantidad3").value
+		document.getElementById("monto").value = monto1 + monto2 + monto3
 	});
 </script>
