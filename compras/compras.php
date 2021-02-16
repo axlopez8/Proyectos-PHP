@@ -220,51 +220,6 @@
 </body>
 
 </html>
-<script>
-	// java script para agregar valores de registros.
-	function agregar() {
-		var Total_Monto = $('#monto').val();
-		var Total_Pagado = $('#pago').val();
-		var proveedor = $('#proveedor').val();
-		var estado = $('#estado').val();
-		var parametros = null;
-
-		if($('#cantidad1').val()> 0 && $('#Producto1').val()> 0 && $('#cantidad2').val()> 0 && $('#Producto2').val()> 0 && $('#cantidad3').val()> 0 && $('#Producto3').val()> 0){
-			var producto1 = $('#Producto1').val();
-			var producto2 = $('#Producto2').val();
-			var producto3 = $('#Producto3').val();
-			var cantidad1 = $('#cantidad1').val();
-			var cantidad2 = $('#cantidad2').val();
-			var cantidad3 = $('#cantidad3').val();
-			
-			parametros = 'Total_Monto=' + Total_Monto + '&Total_Pagado=' + Total_Pagado + '&proveedor=' + proveedor + '&estado=' + estado + '&Producto1=' + producto1 + '&Producto2=' + producto2 + '&Producto3=' + producto3
-			+ '&cantidad1=' + cantidad1 + '&cantidad2=' + cantidad2 + '&cantidad3=' + cantidad3;
-			
-		} else if($('#cantidad1').val()> 0 && $('#Producto1').val()> 0 && $('#cantidad2').val()> 0 && $('#Producto2').val()> 0 ){
-			var producto1 = $('#Producto1').val();
-			var producto2 = $('#Producto2').val();
-			var cantidad1 = $('#cantidad1').val();
-			var cantidad2 = $('#cantidad2').val();
-			parametros = 'Total_Monto=' + Total_Monto + '&Total_Pagado=' + Total_Pagado + '&proveedor=' + proveedor + '&estado=' + estado + '&Producto1=' + producto1 + '&Producto2=' + producto2 
-			+ '&cantidad1=' + cantidad1 + '&cantidad2=' + cantidad2;
-			
-		} else if($('#cantidad1').val()> 0 && $('#Producto1').val()> 0){
-			var producto1 = $('#Producto1').val();
-			var cantidad1 = $('#cantidad1').val();
-			parametros = 'Total_Monto=' + Total_Monto + '&Total_Pagado=' + Total_Pagado + '&proveedor=' + proveedor + '&estado=' + estado + '&Producto1=' + producto1 + '&cantidad1=' + cantidad1;	
-		} 
-
-		$.ajax({
-			method: "POST",
-			url: "crear.php",
-			data: parametros,
-			//success: function() {
-				//location.reload();
-			//}
-		})
-	};
-</script>
-
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script>
 	var monto1 = 0
@@ -293,4 +248,49 @@
 		monto3 = document.getElementById("p" + d).value * document.getElementById("cantidad3").value
 		document.getElementById("monto").value = monto1 + monto2 + monto3
 	});
+
+	// java script para agregar valores de registros.
+	function agregar() {
+		var Total_Monto = $('#monto').val();
+		var Total_Pagado = $('#pago').val();
+		var proveedor = $('#proveedor').val();
+		var estado = $('#estado').val();
+		var parametros = null;
+		var subtotal1 = monto1;
+		var subtotal2 = monto2;
+		var subtotal3 = monto3;
+
+		if($('#cantidad1').val()> 0 && $('#Producto1').val()> 0 && $('#cantidad2').val()> 0 && $('#Producto2').val()> 0 && $('#cantidad3').val()> 0 && $('#Producto3').val()> 0){
+			var producto1 = $('#Producto1').val();
+			var producto2 = $('#Producto2').val();
+			var producto3 = $('#Producto3').val();
+			var cantidad1 = $('#cantidad1').val();
+			var cantidad2 = $('#cantidad2').val();
+			var cantidad3 = $('#cantidad3').val();
+			parametros = 'Total_Monto=' + Total_Monto + '&Total_Pagado=' + Total_Pagado + '&proveedor=' + proveedor + '&estado=' + estado + '&Producto1=' + producto1 + '&Producto2=' + producto2 + '&Producto3=' + producto3
+			+ '&cantidad1=' + cantidad1 + '&cantidad2=' + cantidad2 + '&cantidad3=' + cantidad3 + '&subtotal1=' + subtotal1 + '&subtotal2=' + subtotal2 + '&subtotal3=' + subtotal3;
+			
+		} else if($('#cantidad1').val()> 0 && $('#Producto1').val()> 0 && $('#cantidad2').val()> 0 && $('#Producto2').val()> 0 ){
+			var producto1 = $('#Producto1').val();
+			var producto2 = $('#Producto2').val();
+			var cantidad1 = $('#cantidad1').val();
+			var cantidad2 = $('#cantidad2').val();
+			parametros = 'Total_Monto=' + Total_Monto + '&Total_Pagado=' + Total_Pagado + '&proveedor=' + proveedor + '&estado=' + estado + '&Producto1=' + producto1 + '&Producto2=' + producto2 
+			+ '&cantidad1=' + cantidad1 + '&cantidad2=' + cantidad2 + '&subtotal1=' + subtotal1 + '&subtotal2=' + subtotal2;
+			
+		} else if($('#cantidad1').val()> 0 && $('#Producto1').val()> 0){
+			var producto1 = $('#Producto1').val();
+			var cantidad1 = $('#cantidad1').val();
+			parametros = 'Total_Monto=' + Total_Monto + '&Total_Pagado=' + Total_Pagado + '&proveedor=' + proveedor + '&estado=' + estado + '&Producto1=' + producto1 + '&cantidad1=' + cantidad1 + '&subtotal1=' + subtotal1;
+		} 
+
+		$.ajax({
+			method: "POST",
+			url: "crear.php",
+			data: parametros,
+			success: function() {
+				location.reload();
+			}
+		})
+	};
 </script>
