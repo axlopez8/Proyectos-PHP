@@ -82,6 +82,7 @@
 						<div class="card-footer">
 							<p class="card-subtitle">Total: Q.<?php echo $columna[1]; ?></p>
 							<p class="card-subtitle">Pago: Q.<?php echo $columna[2]; ?> </p>
+							<p class="card-subtitle">Estado: <?php echo $columna[2]; ?> </p>
 						</div>
 					</div>
 				<?php } ?>

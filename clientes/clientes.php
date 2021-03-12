@@ -41,7 +41,7 @@
 				<tbody>
 				<?php
 				include_once '../Conexion.php';
-				$consulta = "SELECT C.idCliente, P.Nombres, V.Direccion_Venta, C.FK_Persona, C.FK_Venta FROM clientes AS C INNER JOIN personas AS P ON C.FK_Persona=P.idPersona INNER JOIN ventas AS V ON C.FK_Venta=V.idVenta";
+				$consulta = "SELECT C.idCliente, P.Nombres, V.Direccion_Venta, C.FK_Persona FROM clientes AS C INNER JOIN personas AS P ON C.FK_Persona=P.idPersona INNER JOIN ventas AS V ON C.FK_Venta=V.idVenta";
 																											
 				$resultado = mysqli_query($conexion, $consulta) or die ("Si esta leyendo estoy significa que la consulta esta mal");
 				While($columna=mysqli_fetch_array($resultado)){

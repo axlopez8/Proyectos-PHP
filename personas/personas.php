@@ -212,7 +212,7 @@ function agregar(){
 	var NIT = $('#NIT').val();
 	var Telefono = $('#Telefono').val();
 	var Email = $('#Email').val();
-	var parametros = 'Nombres=' + Nombres + '&Apellidos=' + Apellidos + '&DPI=' + DPI + '&NIT=' + NIT + '&Telefono=' + Telefono + '&Email=' + Email;
+	var parametros = '&Nombres=' + Nombres + '&Apellidos=' + Apellidos + '&DPI=' + DPI + '&NIT=' + NIT + '&Telefono=' + Telefono + '&Email=' + Email;
 	
 	$.ajax({
 		method: "POST",

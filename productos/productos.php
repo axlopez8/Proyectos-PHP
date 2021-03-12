@@ -36,7 +36,7 @@
 						<th>Cantidad</th>
 						<th>Precio_Compra</th>
 						<th>Precio_venta</th>
-						<th>Proveedor</th>
+						
 						<th> </th>
 
 					</tr>
@@ -44,7 +44,7 @@
 				<tbody>
 				<?php
 				include_once '../Conexion.php';
-				$consulta = "SELECT p.idProducto, p.Nombre, P.Cantidad, P.Precio_Compra, P.Precio_Venta, Pro.Nombre_Empresa, p.FK_Proveedor FROM productos AS P INNER JOIN proveedores AS Pro ON P.FK_Proveedor = Pro.idProveedor";
+				$consulta = "SELECT p.idProducto, p.Nombre, P.Cantidad, P.Precio_Compra, P.Precio_Venta FROM productos AS P ";
 				$resultado = mysqli_query($conexion, $consulta) or die ("Si esta leyendo estoy significa que la consulta esta mal");
 				While($columna=mysqli_fetch_array($resultado)){
 					
@@ -57,7 +57,7 @@
 						<td> <?php echo $columna[2] ?></td>
 						<td> <?php echo $columna[3] ?></td>
 						<td> <?php echo $columna[4] ?></td>
-						<td> <?php echo $columna[5] ?> </td>
+						
 
 
 						<td>
