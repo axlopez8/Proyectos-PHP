@@ -50,13 +50,14 @@
 										<tr>
 											<th class="text-center" scope="col">Cantidad.</th>
 											<th class="text-center" scope="col">Producto</th>
-											<th class="text-center" scope="col">Sub Total</th>
+											<th class="text-center" scope="col">Precio</th>
+											<th class="text-center" scope="col">Sub_Total</th>
 										</tr>
 									</thead>
 
 									<tbody>
 										<?php
-										$consultad = "SELECT D.Cantidad, P.Nombre, D.sub_total FROM detalles_compras AS D INNER JOIN productos AS P ON D.FK_Producto = P.idProducto WHERE D.FK_Compra = $columna[0]";
+										$consultad = "SELECT D.Cantidad, P.Nombre, D.sub_total, P.Precio_Compra FROM detalles_compras AS D INNER JOIN productos AS P ON D.FK_Producto = P.idProducto WHERE D.FK_Compra = $columna[0]";
 										$resultadod = mysqli_query($conexion, $consultad) or die("Si esta leyendo estoy significa que la consulta esta mal detalles");
 										$total = 0;
 										while ($columnad = mysqli_fetch_array($resultadod)) {
@@ -64,12 +65,13 @@
 											<tr>
 												<td class="text-center table-secondary"><?php echo $columnad[0] ?> </td>
 												<td class="table-secondary"><?php echo $columnad[1] ?> </td>
+												<td class="table-secondary"><?php echo $columnad[3] ?> </td>
 												<td class="text-center table-secondary"><?php echo $columnad[2];
 																						$total = $total + $columnad[2] ?> </td>
 											</tr>
 										<?php } ?>
 										<tr>
-											<td class="table-dark text-right" colspan="2">SubTotal</td>
+											<td class="table-dark text-right" colspan="3">SubTotal</td>
 											<td class="table-secondary text-center">Q.<?php echo $total;
 																						$total = 0; ?></td>
 										</tr>
@@ -226,7 +228,7 @@
 	var monto2 = 0
 	var monto3 = 0
 	$(document).on("change", "#pago", function() {
-		if (document.getElementById("monto").value >= document.getElementById("pago").value) {
+		if (document.getElementById("pago").value >= document.getElementById("monto").value) {
 			document.getElementById('estado').value = "Cancelado"
 		} else {
 			document.getElementById('estado').value = "Deuda"

@@ -45,7 +45,7 @@
 				<tbody>
 				<?php
 				include_once '../Conexion.php';
-				$consulta = "SELECT p.idPersona, p.Nombres, P.Apellidos, P.DPI, P.NIT, P.Telefono, P.Email FROM personas";
+				$consulta = "SELECT p.idPersona, p.Nombres, P.Apellidos, P.DPI, P.NIT, P.Telefono, P.Email FROM personas AS P";
 				$resultado = mysqli_query($conexion, $consulta) or die ("Si esta leyendo estoy significa que la consulta esta mal");
 				While($columna=mysqli_fetch_array($resultado)){
 					
@@ -64,7 +64,7 @@
 
 
 						<td>
-							<a href="#EditarRegistro" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit" onclick='EdiForm(<?php echo $columna[0] ?>,"<?php echo $columna[1] ?>",<?php echo $columna[2] ?>,<?php echo$columna[3] ?>,<?php echo $columna[4] ?>,<?php echo $columna[6]?>, <?php echo $columna[7] ?>)'> &#xE254;</i></a>
+							<a href="#EditarRegistro" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit" onclick='EdiForm(<?php echo $columna[0] ?>,"<?php echo $columna[1] ?>","<?php echo $columna[2] ?>",<?php echo$columna[3] ?>,"<?php echo $columna[4] ?>",<?php echo $columna[5]?>, "<?php echo $columna[6] ?>")'> &#xE254;</i></a>
 							<a href=""  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete" onclick="eliminar(<?php echo $columna[0]?>,'<?php echo $columna[1]?>')">&#xE872;</i></a>
 						</td>
 					</tr>
@@ -228,7 +228,7 @@ function agregar(){
 function eliminar(id,Nombres){
 	var C = confirm('Desea eliminar '+Nombres);
     if (C == true) {
-	var parametros = 'idPerso=' + id;
+	var parametros = 'idPersona=' + id;
 	$.ajax({
 		method: "POST",
 		url: "borrar.php",
@@ -242,6 +242,7 @@ function eliminar(id,Nombres){
 
 // java script para obtener valores de registros.
 function EdiForm(Id,Nombres,Apellidos,DPI,NIT,Telefono,Email){
+	console.log (Id,Nombres,Apellidos,DPI,NIT,Telefono,Email)
 	$("#id2").val(Id);
 	$("#Nombres2").val(Nombres);
 	$("#Apellidos2").val(Apellidos);

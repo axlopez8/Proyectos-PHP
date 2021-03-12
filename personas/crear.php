@@ -1,7 +1,7 @@
 <?php
 
 include_once "../Conexion.php";
-$id = trim ($_POST['id']);
+
 $Nombres = trim ($_POST['Nombres']);
 $Apellidos = trim($_POST['Apellidos']);
 $DPI = trim($_POST['DPI']);
@@ -10,7 +10,7 @@ $Telefono = trim($_POST['Telefono']);
 $Email = trim($_POST['Email']);
 
 if($Nombres != "" && $Apellidos != "" && $DPI != "" && $NIT != "" && $Telefono != "" && $Email != ""   ){
-    $crear="INSERT INTO `personas` (`idProducto`, `Nombres`, `Apellidos`, `DPI`, `NIT`, `Telefono`, `Email`) VALUES (NULL, '$Nombres', '$Apellidos', '$DPI', '$NIT', '$Telefono', '$Email')";
+    $crear="INSERT INTO `personas` (`idPersona`, `Nombres`, `Apellidos`, `DPI`, `NIT`, `Telefono`, `Email`) VALUES (NULL, '$Nombres', '$Apellidos', '$DPI', '$NIT', '$Telefono', '$Email')";
     
     if(mysqli_query($conexion, $crear)) {
         echo "Registro creado";

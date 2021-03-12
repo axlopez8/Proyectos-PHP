@@ -10,7 +10,7 @@ $Telefono = trim($_POST['Telefono']);
 $Email = trim($_POST['Email']);
 
 if($id != "" && $Nombres != "" && $Apellidos != "" && $DPI != "" && $NIT != "" && $Telefono != "" && $Email != ""  ){
-    $editar="UPDATE `personas` SET `Nombres` = '$Nombres', `Apellidos` = '$Apellidos', `DPI` = '$DPI', `NIT` = '$NIT', `Telefono` = '$Telefono', `Email` = '$Email', WHERE `personas`.`idPersona` = $id";
+    $editar="UPDATE `personas` SET `Nombres`= '$Nombres',`Apellidos`='$Apellidos',`DPI`=$DPI,`NIT`='$NIT',`Telefono`=$Telefono,`Email`='$Email' WHERE idPersona=$id";
     
     if(mysqli_query($conexion, $editar)) {
         echo "Registro editado";

@@ -3,7 +3,7 @@ include_once "../Conexion.php";
 $idPersona = trim ($_POST['idPersona']);
 
 
-if($idproducto != "" ){
+if($idPersona != "" ){
     $borrar=" DELETE FROM `personas` WHERE `idPersona`= $idPersona";
     
     if(mysqli_query($conexion, $borrar)) {
